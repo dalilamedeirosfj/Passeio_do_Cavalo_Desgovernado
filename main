@@ -1,0 +1,173 @@
+Const
+
+   TAM = 64
+
+Var
+
+   tab: vetor[1..8,1..8] de inteiro
+
+   i, j, cont, cont2, aux1, aux2, aux3, l, c: inteiro
+
+Inicio
+
+   EscrevaL ("-------------------------------------------")
+
+   EscrevaL ("|     PASSEIO DO CAVALO DESGOVERNADO     |")
+
+   EscrevaL ("-------------------------------------------")
+
+   EscrevaL ("Bem vindo ao Jogo, este é o seu tabuleiro:")
+
+   EscrevaL ("-------------------------------------------")
+
+   Para l <- 1 ate 8 faça
+
+      Para c <- 1 ate 8 faça
+
+         Se tab[l,c] < 10 então
+
+            Escreva ("[", tab[l,c]," ]")
+
+         senao
+
+            Escreva ("[", tab[l,c],"]")
+
+         fimse
+
+      Fimpara
+
+      EscrevaL ()
+
+   Fimpara
+
+   Escreval ("Digite a posição inicial do Cavalo -> x,y")
+
+   l <- i
+
+   c <- j
+
+   cont2 <- 1
+
+   cont <- 1
+
+   leia(i, j)
+
+   tab[i,j] <- cont
+
+   repita
+
+      Para l <- 1 ate 8 faça
+
+         Para c <- 1 ate 8 faça
+
+            Se tab[l,c] < 10 então
+
+               Escreva ("[", tab[l,c]," ]")
+
+            senao
+
+               Escreva ("[", tab[l,c],"]")
+
+            fimse
+
+         Fimpara
+
+         EscrevaL ()
+
+      Fimpara
+
+      l <- i
+
+      c <- j
+
+      aux1 <- randi(2) //decide quem recebe 2 e 1.
+
+      aux2 <- randi(2) //decide sinal.
+
+      aux3 <- randi(2) //decide j.
+
+      //movimento do cavalo
+
+      se (aux1 = 0) entao
+
+         se (aux2 = 0) entao
+
+            i <- i + 1
+
+         senao
+
+            i <- i - 1
+
+         fimse
+
+         se (aux3 = 0) entao
+
+            j <- j + 2
+
+         senao
+
+            j <- j - 2
+
+         fimse
+
+      fimse
+
+      se (aux1 = 1) entao
+
+         se (aux2 = 0) entao
+
+            i <- i + 2
+
+         senao
+
+            i <- i - 2
+
+         fimse
+
+         se (aux3 = 0) entao
+
+            j <- j + 1
+
+         senao
+
+            j <- j - 1
+
+         fimse
+
+      fimse
+
+      se ((i < 1) ou (i > 8) ou (j < 1) ou (j > 8)) entao //Verifica se é possível.
+
+         i <- l
+
+         j <- c
+
+      senao //Se o cavalo não esteve na casa.
+
+         se (tab[i,j] = 0) entao
+
+            cont <- cont + 1
+
+            tab[i,j] <- cont
+
+         senao
+
+            i <- l
+
+            j <- c
+
+         fimse
+
+      fimse
+
+      cont2 <- cont2 + 1
+
+      escreval()
+
+   ate cont2 = 512 // 64*8 = número máximo de posibilidades
+
+   Escreval ("O número de casas visitadas foi de ->", cont)
+
+   Escreval ("O número de casas NÃO visitadas foi de ->", 64 - cont)
+
+fimalgoritmo
